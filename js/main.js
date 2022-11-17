@@ -33,7 +33,6 @@ function renderBooks(book, regex = "") {
     } else {
       clonedBookTemplate.querySelector(".book_title").textContent = item.title;
     }
-    clonedBookTemplate.querySelector(".author").textContent = item.author;
     clonedBookTemplate.querySelector(".year_text").textContent = item.year;
     clonedBookTemplate.querySelector(".pages_text").textContent = item.pages;
     clonedBookTemplate.querySelector(".language_text").textContent =
@@ -55,13 +54,12 @@ function renderLanguage() {
   });
   languageSelectEl.appendChild(langFragment);
 }
-
 function searchBooksRendering(search) {
   const filteredBooks = books.filter((item) => {
     const headerSort =
       item.title.match(search) &&
       (languageSelectEl.value == "all" ||
-        item.language.includes(languageSelectEl.value)) &&
+        item.language == languageSelectEl.value) &&
       (bookYear == "" || item.year <= Number(bookYear.value));
     return headerSort;
   });
